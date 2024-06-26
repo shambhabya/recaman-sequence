@@ -16,6 +16,10 @@ const sequence = [
 const drawRecaman = (n) => {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.beginPath();
+
+  ctx.fillStyle = "white";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
   ctx.strokeStyle = "black";
 
   const midHeight = canvas.height / 2;

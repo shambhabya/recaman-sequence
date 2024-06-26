@@ -14,27 +14,26 @@ const sequence = [
 ].map((item) => item * scale);
 
 const drawRecaman = (n) => {
-  // Clear the canvas
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   ctx.beginPath();
   ctx.strokeStyle = "black";
 
   const midHeight = canvas.height / 2;
 
-  //Draw middle line
+  // Draw the middle line
   ctx.beginPath();
   ctx.moveTo(0, midHeight);
   ctx.lineTo(canvas.width, midHeight);
   ctx.strokeStyle = "black";
   ctx.stroke();
 
-  // Draw the arcs for the sequence
-  ctx.strokeStyle = "blue";
-  for (let i = 1; i < n; i++) {
+  // Draw the Recamán sequence arcs
+  ctx.strokeStyle = "black";
+  for (let i = 1; i <= n; i++) {
     const x = sequence[i - 1];
     const y = sequence[i];
-    const radius = (Math.abs(sequence[i] - sequence[i - 1]) * scale) / 2;
-    const startAngle = sequence[i] > sequence[i - 1] ? Math.PI : 0;
+    const radius = Math.abs(sequence[i] - sequence[i - 1]) / 2;
+    const startAngle = i % 2 ? 0 : Math.PI;
     const endAngle = startAngle + Math.PI;
 
     ctx.beginPath();

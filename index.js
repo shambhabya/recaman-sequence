@@ -31,14 +31,20 @@ const drawRecaman = (n) => {
   ctx.strokeStyle = "black";
   ctx.stroke();
 
-  // Draw the Recamán sequence arcs
-  ctx.strokeStyle = "black";
+  // Draw the Recamán sequence arcs with gradient colors
   for (let i = 1; i <= n; i++) {
     const x = sequence[i - 1];
     const y = sequence[i];
     const radius = Math.abs(sequence[i] - sequence[i - 1]) / 2;
     const startAngle = i % 2 ? 0 : Math.PI;
     const endAngle = startAngle + Math.PI;
+
+    // Create a gradient for each arc
+    const gradient = ctx.createLinearGradient(x, midHeight, y, midHeight);
+    gradient.addColorStop(0, `hsl(${(i * 20) % 360}, 100%, 50%)`);
+    gradient.addColorStop(1, `hsl(${((i + 1) * 20) % 360}, 100%, 50%)`);
+
+    ctx.strokeStyle = gradient;
 
     ctx.beginPath();
     ctx.arc((x + y) / 2, midHeight, radius, startAngle, endAngle);
